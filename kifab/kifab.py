@@ -54,8 +54,16 @@ class Board(object):
 
     def plot_drills(self, dest, suffix):
         dctl = pcbnew.EXCELLON_WRITER(self._board)
-        dctl.SetMergeOption(False)
-        dctl.SetFormat(False)
+
+        mirror = False
+        minimalHeader = False
+        offset = self._board.GetAuxOrigin()
+        mergeNPTH = False # two files
+        dctl.SetOptions( mirror, minimalHeader, offset, mergeNPTH )
+
+        metricFmt = True
+        dctl.SetFormat( metricFmt )
+
         dctl.CreateDrillandMapFilesSet(dest, aGenDrill=True, aGenMap=False)
 
         oldname = os.path.join(dest, self._name)
