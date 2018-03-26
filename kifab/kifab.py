@@ -44,8 +44,8 @@ class Board(object):
         ]
 
         for layer_info in plot_plan:
-            pctl.OpenPlotfile(suffix, pcbnew.PLOT_FORMAT_GERBER, layer_info[2])
             pctl.SetLayer(layer_info[1])
+            pctl.OpenPlotfile(suffix, pcbnew.PLOT_FORMAT_GERBER, layer_info[2])
             pctl.PlotLayer()
             filename = pctl.GetPlotFileName()
             pctl.ClosePlot()
