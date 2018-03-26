@@ -8,6 +8,11 @@ Export gerbers from Kicad and renames them to the defacto standard filenames:
  - B_Mask -> .GBM
  - Edge_Cuts -> .GML
 
+Drills:
+
+ - PTH.drl -> PTH.TXT
+ - NPTH.drl -> NPTH.TXT
+
 Options:
 
  - -i: Input PCB file.
@@ -38,4 +43,3 @@ Example usage:
     cd -
     cp $TEMPDIR/$FULLNAME.zip .
     rm -rf --one-file-system $TEMPDIR
-
