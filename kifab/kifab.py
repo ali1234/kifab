@@ -19,7 +19,7 @@ class Board(object):
 
         popt = pctl.GetPlotOptions()
 
-        popt.SetOutputDirectory(dest)
+        popt.SetOutputDirectory(os.path.abspath(dest))
 
         popt.SetPlotFrameRef(False)
         popt.SetLineWidth(pcbnew.FromMM(0.1))
