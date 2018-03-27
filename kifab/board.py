@@ -10,11 +10,18 @@ class Board(object):
         self._popt = self._pctl.GetPlotOptions()
 
 
-    def plot_layer(self, id=None, negative=False):
+    def plot_layer(self, id=None, negative=False, colour=None):
         if id is None:
             raise Exception('Layer has no id.')
 
         self._pctl.SetLayer(getattr(pcbnew, id))
+        if colour is None:
+            self._pctl.SetColorMode(False)
+        else:
+            self._pctl.SetColorMode(True)
+            # Setting a colour currently does not work
+            # see https://lists.launchpad.net/kicad-developers/msg28776.html
+            self._popt.SetColor(pcbnew.COLOR4D(*colour))
         self._popt.SetSkipPlotNPTH_Pads(id <= pcbnew.B_Cu)
         self._popt.SetNegative(negative)
         self._pctl.PlotLayer()
