@@ -1,9 +1,12 @@
-## Export fabrication files from Kicad using a YAML config.
+## Export fabrication files from KiCad using a YAML config.
 
 Kifab creates plot and drill files according to a config file similar
 to how Eagle uses a CAM file. The config file is written in YAML and
 describes which layers should be plotted, the plotting options, and can
 also override the output filename extensions.
+
+Kifab has no warranty. Check anything it produces carefully before
+submitting for fabrication.
 
     usage: kifab [-h] [-o OUTDIR] [-s SUFFIX] PCBFILE FABFILE
 
@@ -50,7 +53,7 @@ for the bottom:
           - id: B_Cu
 
 This will produce an SVG file with the listed layers. The colours will
-not be used because Kicad does not yet support setting colours from
+not be used because KiCad does not yet support setting colours from
 python script. Instead, the default layer colours will be used:
 
     plots:
