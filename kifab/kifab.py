@@ -21,7 +21,7 @@ class Board(object):
 
         popt.SetOutputDirectory(os.path.abspath(dest))
 
-        popt.SetPlotFrameRef(False)         # "Plot sheet reference on all layers"
+        popt.SetPlotFrameRef(False)         # "Plot sheet reference on all layers" NOTE: Must be false
         popt.SetPlotValue(True)             # "Plot footprint values"
         popt.SetPlotReference(True)         # "Plot footprint references"
         popt.SetPlotInvisibleText(False)    # "Force plotting of invisible values/references"
