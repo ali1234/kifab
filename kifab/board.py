@@ -10,7 +10,7 @@ class Board(object):
         self._popt = self._pctl.GetPlotOptions()
 
 
-    def plot_layer(self, id=None, negative=False, colour=None):
+    def plot_layer(self, id=None, colour=None):
         if id is None:
             raise Exception('Layer has no id.')
 
@@ -23,7 +23,6 @@ class Board(object):
             # see https://lists.launchpad.net/kicad-developers/msg28776.html
             self._popt.SetColor(pcbnew.COLOR4D(*colour))
         self._popt.SetSkipPlotNPTH_Pads(id <= pcbnew.B_Cu)
-        self._popt.SetNegative(negative)
         self._pctl.PlotLayer()
 
 
@@ -34,9 +33,11 @@ class Board(object):
                 layers=None,
                 comment='',
                 mirror=False,
+                negative=False,
+                aux_origin=True,
                 no_tent_vias=False,
                 exclude_edge=False,
-                precision=6
+                precision=6,
              ):
 
         if layers is None:
@@ -51,8 +52,9 @@ class Board(object):
         self._popt.SetPlotViaOnMaskLayer(no_tent_vias) # "Do not tent vias"
         self._popt.SetExcludeEdgeLayer(exclude_edge)   # "Exclude PCB edge layer from other layers"
         self._popt.SetPlotPadsOnSilkLayer(False)       # "Exclude pads from silkscreen" NOTE: meaning is reversed from GUI
-        self._popt.SetMirror(mirror)                   # "Mirrored plot"
-        self._popt.SetUseAuxOrigin(True)               # "Use auxiliary axis as origin"
+        self._popt.SetMirror(mirror)                   # "Mirrored plot" NOTE: affects entire file
+        self._popt.SetNegative(negative)               # "Negative plot" NOTE: affects entire file
+        self._popt.SetUseAuxOrigin(aux_origin)         # "Use auxiliary axis as origin"
 
         self._popt.SetDrillMarksType( pcbnew.PCB_PLOT_PARAMS.NO_DRILL_SHAPE )
         self._popt.SetAutoScale(False)
@@ -89,12 +91,16 @@ class Board(object):
               merge_npth=False,
               extension=None,
               mirror=False,
+              aux_origin=True,
               minimal_header=False,
-              metric=True
+              metric=True,
               ):
 
         dctl = pcbnew.EXCELLON_WRITER(self._board)
-        offset = self._board.GetAuxOrigin()
+        if aux_origin:
+            offset = self._board.GetAuxOrigin()
+        else:
+            offset = pcbnew.wxPoint(0,0)
         dctl.SetOptions(mirror, minimal_header, offset, merge_npth )
         dctl.SetFormat(metric)
         dctl.CreateDrillandMapFilesSet(dest, aGenDrill=True, aGenMap=False)

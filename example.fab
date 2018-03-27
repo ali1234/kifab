@@ -39,54 +39,56 @@ plots:
   - comment: Top Render
     format: PLOT_FORMAT_SVG
     suffix: top
+    aux_origin: False
     layers:
       - id: Edge_Cuts
       - id: F_Cu
         colour: [0.7, 0.7, 0.7, 1.0]
       - id: F_Mask
         colour: [1.0, 0.0, 0.0, 0.5]
-        negative: True
       - id: F_SilkS
         colour: [1.0, 1.0, 1.0, 1.0]
+      - id: Dwgs_User
 
   - comment: Bottom Render
     format: PLOT_FORMAT_SVG
     suffix: bottom
     mirror: True
+    aux_origin: False
     layers:
       - id: Edge_Cuts
       - id: B_Cu
         colour: [0.7, 0.7, 0.7, 1.0]
       - id: B_Mask
         colour: [1.0, 0.0, 0.0, 0.5]
-        negative: True
       - id: B_SilkS
         colour: [1.0, 1.0, 1.0, 1.0]
 
   - comment: Top Render
     format: PLOT_FORMAT_PDF
     suffix: top
+    aux_origin: False
     layers:
       - id: Edge_Cuts
       - id: F_Cu
         colour: [0.7, 0.7, 0.7, 1.0]
       - id: F_Mask
         colour: [1.0, 0.0, 0.0, 0.5]
-        negative: True
       - id: F_SilkS
         colour: [1.0, 1.0, 1.0, 1.0]
+      - id: Dwgs_User
 
   - comment: Bottom Render
     format: PLOT_FORMAT_PDF
     suffix: bottom
     mirror: True
+    aux_origin: False
     layers:
       - id: Edge_Cuts
       - id: B_Cu
         colour: [0.7, 0.7, 0.7, 1.0]
       - id: B_Mask
         colour: [1.0, 0.0, 0.0, 0.5]
-        negative: True
       - id: B_SilkS
         colour: [1.0, 1.0, 1.0, 1.0]
 
