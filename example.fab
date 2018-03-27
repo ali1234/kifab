@@ -1,0 +1,94 @@
+plots:
+  - comment: Top Copper
+    layers:
+      - id: F_Cu
+
+  - comment: Bottom Copper
+    layers:
+      - id: B_Cu
+
+  - comment: Top Silk
+    layers:
+      - id: F_SilkS
+
+  - comment: Bottom Silk
+    layers:
+      - id: B_SilkS
+
+  - comment: Top Mask
+    layers:
+      - id: F_Mask
+
+  - comment: Bottom Mask
+    layers:
+      - id: B_Mask
+
+  - comment: Top Paste
+    layers:
+      - id: F_Paste
+
+  - comment: Bottom Paste
+    layers:
+      - id: B_Paste
+
+  - comment: Mechanical
+    extension: .gml
+    layers:
+      - id: Edge_Cuts
+
+  - comment: Top Render
+    format: PLOT_FORMAT_SVG
+    suffix: top
+    layers:
+      - id: Edge_Cuts
+      - id: F_Cu
+        colour: [0.7, 0.7, 0.7, 1.0]
+      - id: F_Mask
+        colour: [1.0, 0.0, 0.0, 0.5]
+        negative: True
+      - id: F_SilkS
+        colour: [1.0, 1.0, 1.0, 1.0]
+
+  - comment: Bottom Render
+    format: PLOT_FORMAT_SVG
+    suffix: bottom
+    mirror: True
+    layers:
+      - id: Edge_Cuts
+      - id: B_Cu
+        colour: [0.7, 0.7, 0.7, 1.0]
+      - id: B_Mask
+        colour: [1.0, 0.0, 0.0, 0.5]
+        negative: True
+      - id: B_SilkS
+        colour: [1.0, 1.0, 1.0, 1.0]
+
+  - comment: Top Render
+    format: PLOT_FORMAT_PDF
+    suffix: top
+    layers:
+      - id: Edge_Cuts
+      - id: F_Cu
+        colour: [0.7, 0.7, 0.7, 1.0]
+      - id: F_Mask
+        colour: [1.0, 0.0, 0.0, 0.5]
+        negative: True
+      - id: F_SilkS
+        colour: [1.0, 1.0, 1.0, 1.0]
+
+  - comment: Bottom Render
+    format: PLOT_FORMAT_PDF
+    suffix: bottom
+    mirror: True
+    layers:
+      - id: Edge_Cuts
+      - id: B_Cu
+        colour: [0.7, 0.7, 0.7, 1.0]
+      - id: B_Mask
+        colour: [1.0, 0.0, 0.0, 0.5]
+        negative: True
+      - id: B_SilkS
+        colour: [1.0, 1.0, 1.0, 1.0]
+
+drill:
+    merge_npth: False
