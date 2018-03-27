@@ -27,8 +27,7 @@ class Board(object):
         self._pctl.PlotLayer()
 
 
-    def plot(self, dest,
-                version='',
+    def plot(self, dest, global_suffix='',
                 suffix='',
                 format='PLOT_FORMAT_GERBER',
                 extension=None,
@@ -43,7 +42,7 @@ class Board(object):
         if layers is None:
             raise Exception('No layers for plot.')
 
-        suffix = '-'.join([suffix, version]).strip('- ')
+        suffix = '-'.join([suffix, global_suffix]).strip('- ')
 
         self._popt.SetPlotFrameRef(False)              # "Plot sheet reference on all layers" NOTE: Must be false
         self._popt.SetPlotValue(True)                  # "Plot footprint values"
@@ -85,21 +84,36 @@ class Board(object):
         if extension is not None:
             os.rename(filename, filename.replace('.gbr', extension))
 
-    def drill(self, dest, suffix):
+
+    def drill(self, dest, global_suffix='',
+              merge_npth=False,
+              extension=None,
+              mirror=False,
+              minimal_header=False,
+              metric=True
+              ):
+
         dctl = pcbnew.EXCELLON_WRITER(self._board)
-
-        mirror = False
-        minimalHeader = False
         offset = self._board.GetAuxOrigin()
-        mergeNPTH = False # two files
-        dctl.SetOptions( mirror, minimalHeader, offset, mergeNPTH )
-
-        metricFmt = True
-        dctl.SetFormat( metricFmt )
-
+        dctl.SetOptions(mirror, minimal_header, offset, merge_npth )
+        dctl.SetFormat(metric)
         dctl.CreateDrillandMapFilesSet(dest, aGenDrill=True, aGenMap=False)
 
-        #oldname = os.path.join(dest, self._name)
-        #newname = os.path.join(dest, self.mk_suffixed_name(suffix))
-        #os.rename(oldname + '-PTH.drl', newname + '-PTH.TXT')
-        #os.rename(oldname + '-NPTH.drl', newname + '-NPTH.TXT')
+        oldname = os.path.join(dest, self._name)
+        if len(global_suffix):
+            newname = os.path.join(dest, self._name + '-' + global_suffix)
+        else:
+            newname = oldname
+
+        oldext = '.drl'
+        if extension is not None:
+            newext = extension
+        else:
+            newext = oldext
+
+        if newname != oldname or newext != oldext:
+            if merge_npth:
+                os.rename(oldname + oldext, newname + newext)
+            else:
+                for s in ['-PTH', '-NPTH']:
+                    os.rename(oldname + s + oldext, newname + s + newext)
