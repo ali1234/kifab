@@ -21,18 +21,30 @@ class Board(object):
 
         popt.SetOutputDirectory(os.path.abspath(dest))
 
-        popt.SetPlotFrameRef(False)
-        popt.SetLineWidth(pcbnew.FromMM(0.1))
+        popt.SetPlotFrameRef(False)         # "Plot sheet reference on all layers"
+        popt.SetPlotValue(True)             # "Plot footprint values"
+        popt.SetPlotReference(True)         # "Plot footprint references"
+        popt.SetPlotInvisibleText(False)    # "Force plotting of invisible values/references"
+        popt.SetPlotViaOnMaskLayer(False)   # "Do not tent vias"
+        popt.SetExcludeEdgeLayer(False)     # "Exclude PCB edge layer from other layers"
+        popt.SetPlotPadsOnSilkLayer(False)  # "Exclude pads from silkscreen" NOTE: meaning is reversed from GUI
+        popt.SetMirror(False)               # "Mirrored plot"
+        popt.SetNegative(False)             # "Negative plot"
+        popt.SetUseAuxOrigin(True)          # "Use auxiliary axis as origin"
+
+        popt.SetDrillMarksType( pcbnew.PCB_PLOT_PARAMS.NO_DRILL_SHAPE )
         popt.SetAutoScale(False)
         popt.SetScale(1)
-        popt.SetMirror(False)
-        popt.SetUseGerberAttributes(False)
-        popt.SetUseGerberProtelExtensions(False)
-        popt.SetExcludeEdgeLayer(False)
-        popt.SetScale(1)
-        popt.SetUseAuxOrigin(True)
+        popt.SetPlotMode(pcbnew.FILLED)
+        popt.SetLineWidth(pcbnew.FromMM(0.1))
 
+        popt.SetUseGerberProtelExtensions(False)
+        popt.SetUseGerberAttributes(False)
+        #popt.SetUseGerberAdvancedAttributes(False) # NOTE: missing from API
+        popt.SetCreateGerberJobFile(False)
         popt.SetSubtractMaskFromSilk(False)
+
+        popt.SetGerberPrecision(6) # 5 or 6
 
         plot_plan = [
             ( ".GTL", pcbnew.F_Cu, "Copper Top" ),
