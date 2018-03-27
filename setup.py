@@ -10,6 +10,9 @@ setup(
     license='GPLv3+',
     platforms=['linux'],
     packages=['kifab'],
+    install_requires=[
+        'pyyaml'
+    ],
     entry_points={
         'console_scripts': [
             'kifab = kifab.__main__:main'
