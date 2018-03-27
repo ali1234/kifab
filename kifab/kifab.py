@@ -57,11 +57,7 @@ class Board(object):
         ]
 
         for layer_info in plot_plan:
-            if layer_info[1] <= pcbnew.B_Cu:
-                popt.SetSkipPlotNPTH_Pads( True )
-            else:
-                popt.SetSkipPlotNPTH_Pads( False )
-
+            popt.SetSkipPlotNPTH_Pads(layer_info[1] <= pcbnew.B_Cu)
             pctl.SetLayer(layer_info[1])
             pctl.OpenPlotfile(suffix, pcbnew.PLOT_FORMAT_GERBER, layer_info[2])
             pctl.PlotLayer()
