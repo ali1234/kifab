@@ -12,7 +12,7 @@ setup(
     packages=['kifab'],
     entry_points={
         'console_scripts': [
-            'kifab = kifab.kifab:main'
+            'kifab = kifab.__main__:main'
         ]
     },
     classifiers=[
