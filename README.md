@@ -29,7 +29,7 @@ default options, and the output file with use the Protel extension .gtl:
     plots:
       - comment: Top Copper
         layers:
-          id: F_Cu
+          - id: F_Cu
 
 This will export Edge.Cuts gerber but the output file will have the
 extension .gml instead of .gm1:
@@ -38,7 +38,7 @@ extension .gml instead of .gm1:
       - comment: Mechanical
         extension: .gml
         layers:
-          id: Edge_Cuts
+          - id: Edge_Cuts
 
 This will produce two separate gerbers, one for the top copper and one
 for the bottom:
