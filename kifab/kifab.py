@@ -39,8 +39,8 @@ class Board(object):
             ( ".GBL", pcbnew.B_Cu, "Copper Bottom" ),
             ( ".GTS", pcbnew.F_SilkS, "Silk Top" ),
             ( ".GBS", pcbnew.B_SilkS, "Silk Bottom" ),
-            ( ".GTM", pcbnew.B_Mask, "Solder Mask Stop Top" ),
-            ( ".GBM", pcbnew.F_Mask, "Solder Mask Stop Bottom" ),
+            ( ".GTM", pcbnew.F_Mask, "Solder Mask Stop Top" ),
+            ( ".GBM", pcbnew.B_Mask, "Solder Mask Stop Bottom" ),
             ( ".GML", pcbnew.Edge_Cuts, "Mechanical" ),
         ]
 
