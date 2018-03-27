@@ -1,18 +1,18 @@
 Export fabrication files from Kicad using a YAML config.
 
 
-usage: kifab [-h] [-o OUTDIR] [-s SUFFIX] PCBFILE FABFILE
+    usage: kifab [-h] [-o OUTDIR] [-s SUFFIX] PCBFILE FABFILE
 
-positional arguments:
-  PCBFILE               Kicad PCB file.
-  FABFILE               Kifab FAB file.
+    positional arguments:
+      PCBFILE               Kicad PCB file.
+      FABFILE               Kifab FAB file.
 
-optional arguments:
-  -h, --help            show this help message and exit
-  -o OUTDIR, --outdir OUTDIR
-                        Generate files in this directory.
-  -s SUFFIX, --suffix SUFFIX
-                        Common suffix for generated files.
+    optional arguments:
+      -h, --help            show this help message and exit
+      -o OUTDIR, --outdir OUTDIR
+                            Generate files in this directory.
+      -s SUFFIX, --suffix SUFFIX
+                            Common suffix for generated files.
 
 
 Example usage:
