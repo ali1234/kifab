@@ -1,23 +1,19 @@
-Export gerbers from Kicad and renames them to the defacto standard filenames:
+Export fabrication files from Kicad using a YAML config.
 
- - F_Cu -> .GTL
- - B_Cu -> .GBL
- - F_SilkS -> .GTS
- - B_SilkS -> .GBS
- - F_Mask -> .GTM
- - B_Mask -> .GBM
- - Edge_Cuts -> .GML
 
-Drills:
+usage: kifab [-h] [-o OUTDIR] [-s SUFFIX] PCBFILE FABFILE
 
- - PTH.drl -> PTH.TXT
- - NPTH.drl -> NPTH.TXT
+positional arguments:
+  PCBFILE               Kicad PCB file.
+  FABFILE               Kifab FAB file.
 
-Options:
+optional arguments:
+  -h, --help            show this help message and exit
+  -o OUTDIR, --outdir OUTDIR
+                        Generate files in this directory.
+  -s SUFFIX, --suffix SUFFIX
+                        Common suffix for generated files.
 
- - -i: Input PCB file.
- - -o: Output path for export.
- - -s: additional suffix for exported files.
 
 Example usage:
 
@@ -36,7 +32,7 @@ Example usage:
     TEMPDIR=$(mktemp -d)
     mkdir $TEMPDIR/$FULLNAME
 
-    kifab -i $PROJECT.kicad_pcb -o $TEMPDIR/$FULLNAME -s $VERSION
+    kifab -o $TEMPDIR/$FULLNAME -s $VERSION $PROJECT.kicad_pcb $PROJECT.fab
     cp -r docs/* $TEMPDIR/$FULLNAME
     cd $TEMPDIR
     zip -r $FULLNAME.zip $FULLNAME/
