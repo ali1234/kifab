@@ -49,10 +49,10 @@ class Board(object):
         plot_plan = [
             ( ".GTL", pcbnew.F_Cu, "Copper Top" ),
             ( ".GBL", pcbnew.B_Cu, "Copper Bottom" ),
-            ( ".GTS", pcbnew.F_SilkS, "Silk Top" ),
-            ( ".GBS", pcbnew.B_SilkS, "Silk Bottom" ),
-            ( ".GTM", pcbnew.F_Mask, "Solder Mask Stop Top" ),
-            ( ".GBM", pcbnew.B_Mask, "Solder Mask Stop Bottom" ),
+            ( ".GTO", pcbnew.F_SilkS, "Silk Top" ),
+            ( ".GBO", pcbnew.B_SilkS, "Silk Bottom" ),
+            ( ".GTS", pcbnew.F_Mask, "Solder Mask Stop Top" ),
+            ( ".GBS", pcbnew.B_Mask, "Solder Mask Stop Bottom" ),
             ( ".GML", pcbnew.Edge_Cuts, "Mechanical" ),
         ]
 
